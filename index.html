@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗑️ Waste Bin Sorter - Object Detection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🗑️ Waste Bin Sorter</h1>
+            <p>Identify objects with your webcam and sort them into the correct waste bins</p>
+        </div>
+
+        <!-- Setup Section -->
+        <div class="setup-section">
+            <h2>📦 Step 1: Load Your Teachable Machine Model</h2>
+            <div class="setup-content">
+                <div class="file-upload-group">
+                    <label for="model-file" class="file-label">
+                        <span class="file-icon">📄</span>
+                        <span>Select model.json</span>
+                    </label>
+                    <input type="file" id="model-file" accept=".json" />
+                </div>
+                <div class="file-upload-group">
+                    <label for="metadata-file" class="file-label">
+                        <span class="file-icon">📄</span>
+                        <span>Select metadata.json</span>
+                    </label>
+                    <input type="file" id="metadata-file" accept=".json" />
+                </div>
+                <button id="load-btn" class="btn btn-primary">Load Model</button>
+            </div>
+            <div id="status" class="status" style="margin-top: 15px; display: none;"></div>
+        </div>
+
+        <!-- Main Detection Section (Hidden until model is loaded) -->
+        <div id="main-section" style="display: none;">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <button id="start-btn" class="btn btn-success">🎥 Start Camera</button>
+                <button id="stop-btn" class="btn btn-danger" style="display: none;">⏹️ Stop Camera</button>
+            </div>
+
+            <!-- Bin Recommendation -->
+            <div id="bin-recommendation" class="bin-recommendation"></div>
+
+            <!-- Detection Grid -->
+            <div class="detection-grid">
+                <!-- Webcam Section -->
+                <div class="webcam-section">
+                    <h3>📷 Webcam Feed</h3>
+                    <div id="webcam-container" class="webcam-container"></div>
+                </div>
+
+                <!-- Predictions Section -->
+                <div class="predictions-section">
+                    <h3>🔍 Predictions</h3>
+                    <div id="label-container" class="label-container"></div>
+                </div>
+            </div>
+
+            <!-- Bin Guide -->
+            <div class="bin-guide">
+                <h3>🎯 Waste Bin Categories</h3>
+                <div class="bins-grid">
+                    <div class="bin-card recycling">
+                        <div class="bin-emoji">♻️</div>
+                        <h4>Recycling Bin</h4>
+                        <p>Plastic bottles, aluminum cans, paper, cardboard, glass jars, metal containers</p>
+                    </div>
+                    <div class="bin-card compost">
+                        <div class="bin-emoji">🌱</div>
+                        <h4>Compost Bin</h4>
+                        <p>Food waste, fruit peels, vegetable scraps, leaves, grass, organic matter</p>
+                    </div>
+                    <div class="bin-card landfill">
+                        <div class="bin-emoji">🗑️</div>
+                        <h4>Landfill Bin</h4>
+                        <p>Ceramics, broken pottery, styrofoam, non-recyclable plastics, contaminated items</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>✨ Made with machine learning for environmental education</p>
+        </div>
+    </div>
+
+    <!-- TensorFlow.js and Teachable Machine -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+    <!-- Your Application Script -->
+    <script src="app.js"></script>
+</body>
+</html>
